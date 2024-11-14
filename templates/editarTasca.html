@@ -1,0 +1,43 @@
+{% extends './layout.html' %} {% block title %} Editar Nota {% endblock %} {%
+    block body %}
+    <div class="container mx-auto py-8">
+      <h1 class="text-3xl font-bold mb-4">Editar tasca</h1>
+    
+      <form action="/editarTasca/{{ tasca[0] }}" method="POST">
+        <div class="mb-4">
+          <label for="titol" class="block text-sm font-semibold text-gray-700"
+            >Titol:</label
+          >
+          <input
+            type="text"
+            id="titol"
+            name="titol"
+            class="form-input mt-1 block w-full"
+            value="{{tasca[1]}}"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="contingut" class="block text-sm font-semibold text-gray-700"
+            >Contingut:</label
+          >
+          <textarea
+            id="contingut"
+            name="contingut"
+            rows="4"
+            class="form-textarea mt-1 block w-full"
+            required
+          >
+    {{ tasca[2] }}</textarea
+          >
+        </div>
+        <button
+          type="submit"
+          class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        >
+          Guardar cambios
+        </button>
+      </form>
+    </div>
+    {% endblock %}
+    

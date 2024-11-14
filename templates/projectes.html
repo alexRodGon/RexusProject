@@ -1,0 +1,224 @@
+{% extends './layout.html' %} {% block title %} {{ data.titol }} {% endblock %}
+{% block body %}
+<style>
+  .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 13px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+
+  .active1,
+  .accordion:hover {
+    background-color: #ccc;
+  }
+
+  .accordion:after {
+    content: "\002B";
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+
+  .active1:after {
+    content: "\2212";
+  }
+
+  .panel1 {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+
+  .panel1 ul {
+    padding-left: 0;
+  }
+
+  li label {
+    display: inline;
+  }
+</style>
+<div class="container mx-auto py-8">
+  <div class="row justify-content-between">
+    <h1 class="col-4 text-3xl font-bold mb-4">Proyectos</h1>
+    <div class="text-right col-4 mb-4">
+      <button
+        type="button"
+        class="btn btn-primary py-2 px-4 rounded hover:bg-green-600"
+        data-toggle="modal"
+        data-target="#modalCrearProyecto"
+      >
+        Crear proyecto
+      </button>
+    </div>
+  </div>
+  <!-- {{ grupos }} -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for proyecto_id, proyecto_info in proyectos.items() %}
+    <div
+      class="nota-link2 bg-white rounded-lg shadow-md p-4 d-flex justify-content-between align-items-start"
+      id="proyecto{{ proyecto_id }}"
+    >
+      <div>
+        <h2
+          class="text-lg font-semibold mb-2 text truncate"
+          style="max-width: 250px; display: block"
+        >
+          {{ proyecto_info['nombreP'] }}
+        </h2>
+        <p
+          class="d-inline-block text truncate"
+          style="max-width: 250px; display: block"
+        >
+          {{ proyecto_info['descripcionP'] }}
+        </p>
+        <button class="accordion">Información</button>
+        <div class="panel1" id="tareasPendientes">
+          <p>Tareas pendientes</p>
+          <ul>
+            {% for tarea_id, tarea_nombre, tarea_estado in
+            proyecto_info['tareas'] %} {% if tarea_estado == 0 %}
+            <li>
+              <input
+                type="checkbox"
+                id="{{ tarea_id }}"
+                name="{{ tarea_id }}"
+                value="{{ tarea_id }}"
+              />
+              <label for="{{ tarea_id }}">{{ tarea_nombre }}</label>
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+        </div>
+
+        <!-- <div class="panel1" id="tareasCompletadas">
+          <p>Tareas Completadas</p>
+          <ul>
+            {% for tarea_id, tarea_nombre, tarea_estado in
+            proyecto_info['tareas'] %} {% if tarea_estado == 1 %}
+            <li>
+              <input
+                type="checkbox"
+                id="{{ tarea_id }}"
+                name="{{ tarea_id }}"
+                value="{{ tarea_id }}"
+                checked
+              />
+              <label for="{{ tarea_id }}">{{ tarea_nombre }}</label>
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+        </div> -->
+        <!-- 
+        <button
+          type="button"
+          class="px-2 rounded mt-1 hoverIcons"
+          onclick="mostrarModal('{{ proyecto_info['nombreP'] }}', '{{ proyecto_id }}')"
+          style="display: block"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17.997 18h-11.995l-.002-.623c0-1.259.1-1.986 1.588-2.33 1.684-.389 3.344-.736 2.545-2.209-2.366-4.363-.674-6.838 1.866-6.838 2.491 0 4.226 2.383 1.866 6.839-.775 1.464.826 1.812 2.545 2.209 1.49.344 1.589 1.072 1.589 2.333l-.002.619zm4.811-2.214c-1.29-.298-2.49-.559-1.909-1.657 1.769-3.342.469-5.129-1.4-5.129-1.265 0-2.248.817-2.248 2.324 0 3.903 2.268 1.77 2.246 6.676h4.501l.002-.463c0-.946-.074-1.493-1.192-1.751zm-22.806 2.214h4.501c-.021-4.906 2.246-2.772 2.246-6.676 0-1.507-.983-2.324-2.248-2.324-1.869 0-3.169 1.787-1.399 5.129.581 1.099-.619 1.359-1.909 1.657-1.119.258-1.193.805-1.193 1.751l.002.463z"
+            />
+          </svg>
+        </button> -->
+      </div>
+
+      <div class="d-flex flex-column align-items-end">
+        <a
+          href="#"
+          class="hoverIcons align-self-start mb-8"
+          data-toggle="modal"
+          data-target="#editarProyectoModal"
+          onclick="abrirModalEditarProyecto('{{ proyecto_id }}', '{{ proyecto_info['nombreP'] }}', '{{ proyecto_info['descripcionP'] }}')"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"
+            />
+          </svg>
+        </a>
+        <form
+          action="/eliminarProyecto/{{ proyecto_id }}"
+          method="post"
+          class="hoverIcons mt-8"
+        >
+          <button type="submit" class="btnBorrarNota">
+            <svg
+              width="24"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            >
+              <path
+                d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% include 'crear_proyecto_modal.html' %} {% include 'editarProyecto.html' %}
+
+<script src="{{ url_for('static', filename='js/projectes.js') }}"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function () {
+        var tarea_id = this.id;
+        var estado_checkbox = this.checked ? 1 : 0;
+
+        fetch("/actualizar_tarea", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            tarea_id: tarea_id,
+            estado_checkbox: estado_checkbox,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error en la solicitud.");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            // Actualizar la lista de tareas pendientes o completadas según corresponda
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+    });
+  });
+</script>
+{% endblock %}

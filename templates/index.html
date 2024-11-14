@@ -1,0 +1,77 @@
+{% extends './layout.html'%}
+
+{% block title %}
+  {{ data.titol }}
+{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+  <div class="jumbotron">
+    <h1 class="display-4">Bienvenido a Rexus</h1>
+    <p class="lead">Organiza información, colabora con tu equipo y gestiona proyectos en un solo espacio de trabajo.</p>
+    <a class="btn btn-primary btn-lg" href="/register" role="button">Regístrate ahora</a>
+  </div>
+
+  <div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <img src="../static/assets/main.jpg" class="img-fluid" alt="img">
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <img src="../static/assets/documents.jpg" class="card-img-top" alt="img">
+        <div class="card-body">
+          <h5 class="card-title">Documentos</h5>
+          <p class="card-text">Sencillos, potentes, bonitos. Notas y documentos de nueva generación.</p>
+          <a href="#" class="btn btn-primary">Más información</a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <img src="../static/assets/groups.jpg" class="card-img-top" alt="img">
+        <div class="card-body">
+          <h5 class="card-title">Grupos</h5>
+          <p class="card-text">Colabora con tus compañeros de equipo de forma eficiente.</p>
+          <a href="#" class="btn btn-primary">Más información</a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <img src="../static/assets/projects.jpg" class="card-img-top" alt="img">
+        <div class="card-body">
+          <h5 class="card-title">Proyectos</h5>
+          <p class="card-text">Gestiona proyectos complejos sin caer en el caos.</p>
+          <a href="#" class="btn btn-primary">Más información</a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <img src="../static/assets/calendar.jpg" class="card-img-top" alt="img">
+        <div class="card-body">
+          <h5 class="card-title">Calendario</h5>
+          <p class="card-text">Gestiona tu tiempo y tus proyectos en un solo lugar.</p>
+          <a href="#" class="btn btn-primary">Más información</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <footer class="bg-light text-center py-4 mt-4">
+    <div class="container">
+        <p>&copy; 2024 Rexus. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!-- Modal de creación de grupos -->
+<div
+  class="modal fade"
+  id="modalCrearGrupo"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear nuevo grupo</h5>
+        <button
+          type="button"
+          class="close ml-auto"
+          data-dismiss="modal"
+          aria-label="Close"
+          style="position: absolute; top: -5px; right: 12px"
+        >
+          <span aria-hidden="true" style="font-size: 2em">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para crear un nuevo grupo -->
+        <form action="/crearGrupo" method="post">
+          <div class="form-group">
+            <label for="nombreGrupo">Nombre del grupo:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombreGrupo"
+              name="nombreGrupo"
+              required
+            />
+          </div>
+          <div class="form-group mt-4">
+            <label for="descripcionGrupo">Descripción del grupo:</label>
+            <textarea
+              class="form-control"
+              id="descripcionGrupo"
+              name="descripcionGrupo"
+              required
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Crear grupo</button>
+          </div>
+          <!-- <button type="submit" class="btn btn-primary">Crear grupo</button> -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

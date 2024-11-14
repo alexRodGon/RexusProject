@@ -1,0 +1,237 @@
+{% extends './layout.html' %} {% block title %} Perfil de {{ username }} {%
+endblock %} {% block body %}
+<div class="container">
+  <div class="main-body">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="avatar">
+                {% if data %}
+                  {{ data.nombre[:1] if data.nombre else '' }} {{ data.apellido[:1] if data.apellido else '' }}
+                {% endif %}
+              </div>
+              <div class="mt-3">
+                <h4>{{ username }}</h4>
+                <p class="text-secondary mb-1">{{ email }}</p>
+                <p class="text-muted font-size-sm">{{ role }}</p>
+                {% if experiencia < 1 %}
+                <p class="text-muted font-size-sm">Menos de un año de experiencia</p>
+                {% else %}
+                    <p class="text-muted font-size-sm">{{ experiencia }} años de experiencia</p>
+                {% endif %}
+                <!-- <p class="text-muted font-size-sm">{{ premium }}</p> -->
+                
+                {% if premium == "Y" %}
+                <p class="text-muted font-size-sm">Eres un usuario premium</p>
+                {% elif premium == "N" %}
+                <p class="text-muted font-size-sm">No eres un usuario premium</p>
+                {% endif %}
+                <!-- <button class="btn btn-primary">Follow</button> -->
+                <!-- <button class="btn btn-outline-primary">Message</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="mt-8">
+          <a
+            href="/logout"
+            class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+            >Cerrar sesión</a
+          >
+        </div> -->
+      </div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Nombre de usuario</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ username }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ email }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Rol</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ role }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Fecha de registro</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ dataR }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Nombre</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ nombre }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Apellido</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ apellido }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Teléfono</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ telefon }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Dirección</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{{ direccio }}"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Premium</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="{% if premium %} Sí {% else %} No {% endif %}"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mm">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="d-flex align-items-center mb-3">
+                Estado de Proyectos
+              </h5>
+              <p>Diseño Web</p>
+              <div class="progress mb-3" style="height: 5px">
+                <div
+                  class="progress-bar bg-primary"
+                  role="progressbar"
+                  style="width: 80%"
+                  aria-valuenow="80"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+              <p>Maquetación de Sitio Web</p>
+              <div class="progress mb-3" style="height: 5px">
+                <div
+                  class="progress-bar bg-danger"
+                  role="progressbar"
+                  style="width: 72%"
+                  aria-valuenow="72"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+              <p>Página de Inicio</p>
+              <div class="progress mb-3" style="height: 5px">
+                <div
+                  class="progress-bar bg-success"
+                  role="progressbar"
+                  style="width: 89%"
+                  aria-valuenow="89"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+              <p>Plantilla Móvil</p>
+              <div class="progress mb-3" style="height: 5px">
+                <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style="width: 55%"
+                  aria-valuenow="55"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+              <p>API de Backend</p>
+              <div class="progress" style="height: 5px">
+                <div
+                  class="progress-bar bg-info"
+                  role="progressbar"
+                  style="width: 66%"
+                  aria-valuenow="66"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

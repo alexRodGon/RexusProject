@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles del grupo</h5>
+        <button
+          type="button"
+          class="close ml-auto"
+          data-dismiss="modal"
+          aria-label="Close"
+          style="position: absolute; top: -5px; right: 12px"
+        >
+          <span aria-hidden="true" style="font-size: 2em">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group" id="listaElementos"></div>
+        <!-- Botón para añadir miembros -->
+        <!-- <button
+          type="button"
+          class="btn btn-primary mt-3"
+          data-toggle="modal"
+          data-target="#modalAgregarMiembros"
+          onclick="setGrupoId('{{ grupo_id }}')"
+        >
+          Añadir miembro
+        </button> -->
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary mt-3"
+          data-toggle="modal"
+          data-target="#modalAgregarMiembros"
+          onclick="setGrupoId('{{ grupo_id }}')"
+        >
+          Añadir miembro
+        </button>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>

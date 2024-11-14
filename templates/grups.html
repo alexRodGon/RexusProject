@@ -1,0 +1,105 @@
+{% extends './layout.html' %} {% block title %} {{ data.titol }} {% endblock %}
+{% block body %}
+<div class="container mx-auto py-8">
+  <div class="row justify-content-between">
+    <h1 class="col-4 text-3xl font-bold mb-4">Grupos</h1>
+    <div class="text-right col-4 mb-4">
+      <button
+        type="button"
+        class="btn btn-primary py-2 px-4 rounded hover:bg-green-600"
+        data-toggle="modal"
+        data-target="#modalCrearGrupo"
+      >
+        Crear grupo
+      </button>
+    </div>
+  </div>
+  <!-- {{ grupos }} -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for grupo_id, grupo_info in grupos.items() %}
+    <div
+      class="nota-link1 bg-white rounded-lg shadow-md p-4 d-flex justify-content-between align-items-start"
+    >
+      <div>
+        <h2
+          class="text-lg font-semibold mb-2 text truncate"
+          style="max-width: 250px; display: block"
+        >
+          {{ grupo_info['nombre'] }}
+        </h2>
+        <p
+          class="d-inline-block text truncate"
+          style="max-width: 250px; display: block"
+        >
+          {{ grupo_info['descripcion'] }}
+        </p>
+        <button
+          type="button"
+          class="px-2 rounded mt-1 hoverIcons"
+          onclick="mostrarModal('{{ grupo_info['integrantes'] }}', '{{ grupo_id }}')"
+          style="display: block"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17.997 18h-11.995l-.002-.623c0-1.259.1-1.986 1.588-2.33 1.684-.389 3.344-.736 2.545-2.209-2.366-4.363-.674-6.838 1.866-6.838 2.491 0 4.226 2.383 1.866 6.839-.775 1.464.826 1.812 2.545 2.209 1.49.344 1.589 1.072 1.589 2.333l-.002.619zm4.811-2.214c-1.29-.298-2.49-.559-1.909-1.657 1.769-3.342.469-5.129-1.4-5.129-1.265 0-2.248.817-2.248 2.324 0 3.903 2.268 1.77 2.246 6.676h4.501l.002-.463c0-.946-.074-1.493-1.192-1.751zm-22.806 2.214h4.501c-.021-4.906 2.246-2.772 2.246-6.676 0-1.507-.983-2.324-2.248-2.324-1.869 0-3.169 1.787-1.399 5.129.581 1.099-.619 1.359-1.909 1.657-1.119.258-1.193.805-1.193 1.751l.002.463z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="d-flex flex-column align-items-end">
+        <a
+          href="#"
+          class="hoverIcons align-self-start mb-8"
+          data-toggle="modal"
+          data-target="#editarGrupoModal"
+          onclick="abrirModalEditarGrupo('{{ grupo_id }}', '{{ grupo_info['nombre'] }}', '{{ grupo_info['descripcion'] }}')"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"
+            />
+          </svg>
+        </a>
+        <form
+          action="/eliminarGrupo/{{ grupo_id }}"
+          method="post"
+          class="hoverIcons mt-8"
+        >
+          <button type="submit" class="btnBorrarNota">
+            <svg
+              width="24"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            >
+              <path
+                d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z"
+              />
+            </svg>
+          </button>
+        </form>
+
+        <!-- <h2 style:"font-size:60">{{ grupo_id }}</h2> -->
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% include 'detalle_grupo_modal.html' %} {% include
+'agregar_miembros_modal.html' %} {% include 'crear_grupo_modal.html' %} {%
+include 'editarGrupo.html' %}
+<script src="{{ url_for('static', filename='js/grups.js') }}"></script>
+
+{% endblock %}

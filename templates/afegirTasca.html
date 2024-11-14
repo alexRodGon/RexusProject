@@ -1,0 +1,31 @@
+{% extends './layout.html' %} 
+{% block title %} 
+  Agregar Nueva Nota
+{% endblock %}
+
+{% block body %}
+<div class="container mx-auto py-8">
+  <h1 class="text-3xl font-bold mb-4">Añadir tarea nueva</h1>
+  <form action="/add_tasca" method="POST">
+    <div class="mb-4">
+      <label for="titol" class="block text-sm font-semibold text-gray-700">Título:</label>
+      <input type="text" id="titol" name="titol" class="form-input mt-1 block w-full" required>
+    </div>
+    <div class="mb-4">
+      <label for="contingut" class="block text-sm font-semibold text-gray-700">Contenido:</label>
+      <textarea id="contingut" name="contingut" rows="4" class="form-textarea mt-1 block w-full" required></textarea>
+    </div>
+    <div class="mb-4">
+      <label for="proyecto" class="block text-sm font-semibold text-gray-700">Proyecto:</label>
+      <select id="proyecto" name="proyecto" class="form-select mt-1 block w-full" required>
+        <!-- Opciones generadas dinámicamente -->
+        <option value="" disabled selected>Seleccione un proyecto</option>
+        {% for proyecto_id, proyecto in tasca.items() %}
+        <option value="{{ proyecto_id }}">{{ proyecto['nombreP'] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Añadir tarea</button>
+  </form>
+</div>
+{% endblock %}

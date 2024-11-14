@@ -1,0 +1,154 @@
+{% extends './layout.html' %} {% block title %} {% endblock %} {% block body %}
+<div class="container mx-auto py-8">
+  <form action="/register" method="post" class="max-w-md mx-auto">
+    {% if error %}
+    <p class="text-red-500">{{ error }}</p>
+    {% endif %}
+    <div class="mb-4">
+      <label for="nombre" class="block text-gray-700 font-bold mb-2"
+        >Nombre (obligatorio)</label
+      >
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="apellido" class="block text-gray-700 font-bold mb-2"
+        >Apellido (obligatorio)</label
+      >
+      <input
+        type="text"
+        id="apellido"
+        name="apellido"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="username" class="block text-gray-700 font-bold mb-2"
+        >Nombre de usuario(obligatorio)</label
+      >
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="email" class="block text-gray-700 font-bold mb-2"
+        >Correo electrónico (obligatorio)</label
+      >
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block text-gray-700 font-bold mb-2"
+        >Contraseña (obligatorio)</label
+      >
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="telefono" class="block text-gray-700 font-bold mb-2"
+        >Teléfono (obligatorio)</label
+      >
+      <input
+        type="text"
+        id="telefono"
+        name="telefono"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="direccion" class="block text-gray-700 font-bold mb-2"
+        >Dirección</label
+      >
+      <input
+        type="text"
+        id="direccion"
+        name="direccion"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="premium" class="block text-gray-700 font-bold mb-2"
+        >¿Quieres ser premium?</label
+      >
+      <select
+        id="premium"
+        name="premium"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      >
+        <option value="Y">Si</option>
+        <option value="N">No</option>
+      </select>
+    </div>
+    <div class="hidden">
+      <label for="fecha_registro" class="block text-gray-700 font-bold mb-2"
+        >Fecha de Registro</label
+      >
+      <input
+        type="date"
+        id="fecha_registro"
+        name="fecha_registro"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="fecha_nacimiento" class="block text-gray-700 font-bold mb-2"
+        >Fecha de Nacimiento</label
+      >
+      <input
+        type="date"
+        id="fecha_nacimiento"
+        name="fecha_nacimiento"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+    <div class="hidden">
+      <label for="role" class="block text-gray-700 font-bold mb-2">Rol</label>
+      <select
+        id="role"
+        name="role"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      >
+        <option value="observador">Observador</option>
+        <option value="administrador">Administrador</option>
+        <option value="gestor">Gestor</option>
+        <option value="membre">Miembro</option>
+      </select>
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        type="submit"
+        class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-600"
+      >
+        Registrarse
+      </button>
+      <a
+        href="/login"
+        class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+      >
+        ¿Ya tienes cuenta? Inicia sesión
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock %}

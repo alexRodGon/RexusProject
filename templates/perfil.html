@@ -1,0 +1,13 @@
+{% extends './layout.html' %} {% block title %}Perfil de {{ usuario[0] }} {%
+endblock %} {% block body %}
+<div class="container mx-auto py-8">
+  <div class="row justify-content-between">
+    <h1 class="col-4 text-3xl font-bold mb-4">Perfil de {{ usuario[0] }}</h1>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ usuario[0] }} {{ usuario[1] }}</h5>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!-- Modal de creación de proyectos -->
+<div class="modal fade" id="modalCrearProyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear nuevo proyecto</h5>
+        <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close" style="position: absolute; top: -5px; right: 12px;">
+          <span aria-hidden="true" style="font-size: 2em">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para crear un nuevo proyecto -->
+        <form action="/crearProyecto" method="post">
+          <div class="form-group">
+            <label for="nombreProyecto">Nombre del proyecto:</label>
+            <input type="text" class="form-control" id="nombreProyecto" name="nombreProyecto" required />
+          </div>
+          <div class="form-group mt-4">
+            <label for="descripcionProyecto">Descripción del proyecto:</label>
+            <textarea class="form-control" id="descripcionProyecto" name="descripcionProyecto" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="fechaEntregaProyecto">Fecha de entrega del proyecto:</label>
+            <input type="date" class="form-control" id="fechaEntregaProyecto" name="fechaEntregaProyecto" required />
+          </div>
+          <div class="form-group">
+            <label for="grupoUsuario">Grupos:</label>
+            <select multiple class="form-control" id="grupoUsuario" name="grupoUsuario[]" required>
+              <!-- Opciones generadas dinámicamente -->
+              <option value="" disabled>Seleccione uno o más grupos</option>
+              {% for grupo in grupos_usuario %}
+              <option value="{{ grupo[0] }}">{{ grupo[1] }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Crear proyecto</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

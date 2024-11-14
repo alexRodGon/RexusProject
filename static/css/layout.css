@@ -1,0 +1,109 @@
+/* body {
+  background-color: peru;
+  margin-top: 10rem;
+} */
+
+.navbar{
+  background: white !important;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+body{
+  background: #f7f7ff;
+  /* background: white; */
+  margin: 7rem;;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #3498db;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid transparent;
+  border-radius: .25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+.me-2 {
+  margin-right: .5rem!important;
+} 
+
+.mm{
+  margin-top: 10rem!important;
+}
+
+
+.nota-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nota-link1:hover {
+  background-color: darkgray!important;
+  color: white!important;
+}
+  .nota-link2:hover {
+    background-color: darkgray !important;
+  }
+    .completada {
+      background-color: darkgray !important;
+    }
+    .infoT{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    }
+    .infoT p {
+      margin-left: 6px;
+    }
+    .cuadrado {
+  width: 15px;           /* Ancho de 150 píxeles */
+  height: 15px;          /* Alto de 150 píxeles */
+  background: white;        /* Fondo de color rojo */
+  border: 1px solid #000; 
+/* Borde color negro y de 1 píxel de grosor */
+}
+    .cuadrado1 {
+  width: 15px;           /* Ancho de 150 píxeles */
+  height: 15px;          /* Alto de 150 píxeles */
+  background: darkgray;        /* Fondo de color rojo */
+  border: 1px solid #000;
+    margin-left: 2rem; /* Borde color negro y de 1 píxel de grosor */
+}
+.hoverIcons svg:hover {
+  fill: white;
+}
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}

@@ -1,0 +1,59 @@
+{% extends 'layout.html' %} {% block title %}Editar Grupo{% endblock %} {% block
+body %}
+
+<div
+  class="modal fade"
+  id="editarGrupoModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editarGrupoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarGrupoModalLabel">Editar Grupo</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editarGrupoForm" action="/editarGrupo" method="post">
+          <div class="form-group">
+            <label for="nombreGrupo">Nombre del Grupo</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombreGrupoEditar"
+              name="nombreGrupoEditar"
+              placeholder="Nombre del grupo"
+            />
+          </div>
+          <div class="form-group">
+            <label for="descripcionGrupo">Descripción del Grupo</label>
+            <textarea
+              class="form-control"
+              id="descripcionGrupoEditar"
+              name="descripcionGrupoEditar"
+              rows="3"
+              placeholder="Descripción del grupo"
+            ></textarea>
+          </div>
+          <input
+            type="hidden"
+            id="grupoIdEditar"
+            name="grupoIdEditar"
+            value="{{ grupo_id }}"
+          />
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

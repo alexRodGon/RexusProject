@@ -1,0 +1,135 @@
+{% extends './layout.html' %} {% block title %} {{ data.titol }} {% endblock %}
+{% block body %}
+<div class="container mx-auto py-8">
+  <div class="row justify-content-between">
+    <h1 class="col-4 text-3xl font-bold mb-4">Tareas</h1>
+    <div class="text-right col-4 mb-4">
+      <a
+        href="/afegirTasca"
+        class="btn btn-primary py-2 px-4 rounded hover:bg-green-600"
+        >Añadir tarea</a
+      >
+    </div>
+  </div>
+  <div class="infoT">
+    <div class="cuadrado"></div>
+    <p>Tareas pendientes</p>
+    <div class="cuadrado1"></div>
+    <p>Tareas hechas</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for tasca in dataN %} {% if tasca[3] == 0 %}
+    <div
+      class="nota-link1 bg-white rounded-lg shadow-md p-4 d-flex justify-content-between align-items-start"
+    >
+      <div>
+        <h2
+          class="text-lg font-semibold mb-2 text truncate"
+          style="max-width: 250px"
+        >
+          {{ tasca[1] }}
+        </h2>
+        <p class="d-inline-block text truncate" style="max-width: 250px">
+          {{ tasca[2] }}
+        </p>
+        <p class="text-xs text-left mt-2">
+          Última modificación: {{ tasca[3] }}
+        </p>
+      </div>
+      <div class="d-flex flex-column align-items-end">
+        <a
+          href="/editarTasca/{{ tasca[0] }}"
+          class="hoverIcons align-self-start mb-8"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"
+            />
+          </svg>
+        </a>
+        <form
+          action="/tasques/delete/{{ tasca[0] }}"
+          method="post"
+          class="hoverIcons mt-8"
+        >
+          <button type="submit" class="btnBorrarNota">
+            <svg
+              width="24"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            >
+              <path
+                d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    {% endif %} {% endfor %} {% for tasca in dataN %} {% if tasca[3] == 1 %}
+    <div
+      class="nota-link1 bg-white rounded-lg shadow-md p-4 d-flex justify-content-between align-items-start completada"
+    >
+      <div>
+        <h2
+          class="text-lg font-semibold mb-2 text truncate"
+          style="max-width: 250px"
+        >
+          {{ tasca[1] }}
+        </h2>
+        <p class="d-inline-block text truncate" style="max-width: 250px">
+          {{ tasca[2] }}
+        </p>
+        <p class="text-xs text-left mt-2">
+          Última modificación: {{ tasca[3] }}
+        </p>
+      </div>
+      <div class="d-flex flex-column align-items-end">
+        <a
+          href="/editarTasca/{{ tasca[0] }}"
+          class="hoverIcons align-self-start mb-8"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"
+            />
+          </svg>
+        </a>
+        <form
+          action="/tasques/delete/{{ tasca[0] }}"
+          method="post"
+          class="hoverIcons mt-8"
+        >
+          <button type="submit" class="btnBorrarNota">
+            <svg
+              width="24"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            >
+              <path
+                d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+</div>
+{% endblock %}
